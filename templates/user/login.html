@@ -1,0 +1,27 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>login</title>
+        <link rel="stylesheet" href="/static/user/register.css">
+    </head>
+    <body>
+        
+        <form method="POST">
+            {%csrf_token%}
+
+            <fieldset>
+
+                <legend> log in  </legend>
+
+                {{ form|crispy }}
+
+                <div><button type="submit"> log in </button></div>
+
+            </fieldset>
+            
+        </form>
+        
+    </body>
+</html>

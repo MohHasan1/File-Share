@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% block content %}
+<html lang="en">
+    <head>
+        <title>Logout</title>
+    </head>
+    <body>
+        <h1>You have logged out!</h1>
+        <p><a href="{% url 'user_app:login' %}">Click here</a> to log in again.</p>
+    </body>
+</html>
+{% endblock content %}

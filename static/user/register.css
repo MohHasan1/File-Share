@@ -1,0 +1,15 @@
+body{
+    background-color: rgb(15, 4, 39);
+    color: aliceblue;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+a{
+    color: rgb(13, 91, 159);
+}
