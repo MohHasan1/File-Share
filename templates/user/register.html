@@ -14,6 +14,7 @@
 
                 <fieldset>
                     <legend> Sign Up </legend>
+
                     {{ regForm|crispy }}
 
                     <div><button type="submit"> Sign Up </button></div>
@@ -22,7 +23,7 @@
                 
             </form>
 
-            <div><text>If you already have an account <a href="#">log in</a> ! </text></div>
+            <div><text>If you already have an account <a href="{% url 'user_app:login' %}">log in</a> ! </text></div>
         </div>
     </body>
 </html>

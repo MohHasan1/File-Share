@@ -13,8 +13,6 @@ def registration(request):
             target_url = reverse('sharing_app:home')
             return redirect(target_url)
         
-        else:
-            pass
     else:
         # To load the blank with prev inputs.
         regForm = UserRegisterForm()

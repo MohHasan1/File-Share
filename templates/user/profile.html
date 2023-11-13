@@ -8,5 +8,10 @@
         <p>Email: {{ user.email }}</p>
         <p>First Name: {{ user.first_name }}</p>
         <p>Last Name: {{ user.last_name }}</p>
+
+        <a href="{% url 'user_app:logout'%}"> Log out</a> <br>
+        <a href="{% url 'user_app:profile'%}"> Profile</a> <br>
+        <a href="{% url 'sharing_app:upload'%}"> Upload</a> <br>
+        <a href="{% url 'sharing_app:home'%}"> home</a> <br>
     </body>
 </html>

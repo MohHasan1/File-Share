@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>File Upload</title>
+        <link rel="stylesheet" href="/static/user/register.css">
+    </head>
+    <body>
+        <h1>Upload a File</h1>
+        <form method="post" enctype="multipart/form-data"">
+            {% csrf_token %}
+            <div>
+
+                {{form}}
+            <br>
+            <button type="submit">Upload</button>
+        </form>
+        <a href="{% url 'user_app:logout'%}"> Log out</a> <br>
+        <a href="{% url 'user_app:profile'%}"> Profile</a> <br>
+        <a href="{% url 'sharing_app:home'%}"> home</a> <br>
+
+    </body>
+</html>
