@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/user/registerMub.css">
+    <title>Sign Up</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+   <div class="wrapper">
+    <div class="signup_box">
+        <div class="signup-header">
+            <span>Sign Up</span>
+        </div>
+        <form method="POST">
+            {%csrf_token%}
+
+            <div class="input_box">
+                <input type="text" id="{{ regForm.first_name.id_for_label }}" class="input-field" name="{{ regForm.first_name.name }}" required>
+                <label for="{{ regForm.first_name.id_for_label }}" class="label">First name</label>
+                <i class="bx bx-user icon"></i>
+                {% if regForm.first_name.errors %}
+                    <p class="error">{{ regForm.first_name.errors }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="input_box">
+                <input type="text" id="{{ regForm.last_name.id_for_label }}" class="input-field" name="{{ regForm.last_name.name }}" required>
+                <label for="{{ regForm.last_name.id_for_label }}" class="label">Last name</label>
+                <i class="bx bx-user icon"></i>
+                {% if regForm.last_name.errors %}
+                    <p class="error">{{ regForm.last_name.errors }}</p>
+                {% endif %}
+            </div>
+
+            <div class="input_box">
+                <input type="text" id="{{ regForm.username.id_for_label }}" class="input-field" name="{{ regForm.username.name }}" required>
+                <label for="{{ regForm.username.id_for_label }}" class="label">Username</label>
+                <i class="bx bx-user icon"></i>
+                {% if regForm.username.errors %}
+                    <p class="error">{{ regForm.username.errors }}</p>
+                {% endif %}
+            </div>
+
+            <div class="input_box">
+                <input type="email" id="{{ regForm.email.id_for_label }}" class="input-field" name="{{ regForm.email.name }}" required>
+                <label for="{{ regForm.email.id_for_label }}" class="label">Email</label>
+                <i class="bx bx-envelope icon"></i>
+                {% if regForm.email.errors %}
+                    <p class="error">{{ regForm.email.errors }}</p>
+                {% endif %}
+            </div>
+
+            <div class="input_box">
+                <input type="password" id="{{ regForm.password1.id_for_label }}" class="input-field" name="{{ regForm.password1.name }}" required>
+                <label for="{{ regForm.password1.id_for_label }}" class="label">Password</label>
+                <i class="bx bx-lock-alt icon"></i>
+                {% if regForm.password1.errors %}
+                    <p class="error">{{ regForm.password1.errors }}</p>
+                {% endif %}
+            </div>
+        
+            <div class="input_box">
+                <input type="password" id="{{ regForm.password2.id_for_label }}" class="input-field" name="{{ regForm.password2.name }}" required>
+                <label for="{{ regForm.password2.id_for_label }}" class="label">Confirm Password</label>
+                <i class="bx bx-lock-alt icon"></i>
+                {% if regForm.password2.errors %}
+                    <p class="error">{{ regForm.password2.errors }}</p>
+                {% endif %}
+            </div>
+
+            <div class="input_box">
+                <input type="submit" class="input-submit" value="Sign Up">
+            </div>
+
+        </form>
+        <div class="register">
+            <span>Already have an account? <a href="{% url 'user_app:login' %}">Login</a></span>
+        </div>
+    </div>
+   </div>
+</body>
+</html>

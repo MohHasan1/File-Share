@@ -11,6 +11,9 @@ urlpatterns = [
     path('',views.home, name="home"),
     path('upload/', views.upload, name="upload"),
     path('download/<int:file_id>/', views.download, name="download"), # <int:filename>/ gets the file primary id to download.
+    path('share/<int:file_id>/', views.share, name="share"),
+
+    #path('share_file/', views.share_file, name='share_file'),
 ]
 
 if settings.DEBUG:

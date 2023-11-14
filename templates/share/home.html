@@ -22,7 +22,9 @@
                         <br>
                         {# We can download the file using the .url but it will be encrypted. #}
                         {# <strong><a href="{{ file.fileDir.url }}"> Download file </a></strong> #}
-                        <a href="{% url 'sharing_app:download' file_id=file.id %}"> Download File </a>
+                        {# we are passing file id here that is clicked. file is from the datbase.#}
+                        <a href="{% url 'sharing_app:download' file_id=file.id %}"> Download File </a><br>
+                        <a href="{% url 'sharing_app:share' file_id=file.id %}"> Share File </a>
                         <br><br>
                     </li>
                 {% endfor %}

@@ -1,0 +1,62 @@
+<!--{% load crispy_forms_tags %}-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/user/loginMub.css">
+
+    <title>Login</title>
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+<body>
+    
+   <div class="wrapper">
+    <div class="login_box">
+        <div class="login-header">
+            <span>Login</span>
+        </div>
+
+        <form method="POST">
+
+            {%csrf_token%}
+
+            <div class="input_box">
+                <input type="text" id="user" class="input-field" name="{{form.username.name}}"  required>
+                <label for="user" class="label">Username</label>
+                <i class="bx bx-user icon"></i>
+                {% if form.username.errors %}
+                    <p class="error">{{ form.username.errors }}</p>
+                {% endif %}
+            </div>
+
+            <div class="input_box">
+                <input type="password" id="pass" class="input-field" name="{{form.password.name}}" required>
+                <label for="pass" class="label">Password</label>
+                <i class="bx bx-lock-alt icon"></i>
+                {% if form.password.errors %}
+                    <p class="error">{{ form.password.errors }}</p>
+                {% endif %}
+            </div>
+
+            {% if form.non_field_errors %}
+                <p class="error">{{ form.non_field_errors }}</p>
+            {% endif %}
+            
+            <div class="input_box">
+                <input type="submit" class="input-submit" value="Login">
+            </div>
+
+        </form>
+
+
+        <div class="register">
+            <span>Don't have an account? <a class="reg" href="{% url 'user_app:registration' %}">Register</a></span>
+        </div>
+    </div>
+   </div>
+
+</body>
+</html>
+
