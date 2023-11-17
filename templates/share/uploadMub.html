@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+   
+        <title>Upload Page</title>
+        <link rel="stylesheet" type="text/css" href="/static/user/uploadMub.css?v=1">
+
+    </head>
+    <body>
+
+        <div class="navbar">
+            <div class="logo">File Share</div>
+            <ul class="nav-list">
+                <li><a href="{% url 'sharing_app:home' %}">Home</a></li>
+                <li><a href="{% url 'user_app:profile'%}"">Profile</a></li>
+                <li><a href="{% url 'user_app:logout'%}">Logout</a></li>
+            </ul>
+        </div>
+        
+
+        <div class="container">
+            <h1> Upload</h1>
+            <div class="box">
+                <div id="fieldHasn">
+                    <form id="fileNameForm" method="POST" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+                    <!-- remember name == the field names in form -->
+                        {{ form.fileName.label_tag }}
+                        <input type="text" id="{{ form.fileName.id_for_label }}" name="{{ form.fileName.name }}" required>
+                        {% if form.fileName.errors %}
+                            <p class="error">{{ form.fileName.errors }}</p>
+                        {% endif %}
+
+                        {{ form.fileDir.label_tag }}
+                        <input type="file" id="{{ form.fileDir.id_for_label }}" name="{{ form.fileDir.name }}" required>
+                        {% if form.fileDir.errors %}
+                            <p class="error">{{ form.fileDir.errors }}</p>
+                        {% endif %}
+                    
+                        <input class="submit" type="submit" value="Upload">
+                    </form>
+                </div>
+                <!-- <style>
+                .register {
+                    margin: 300px 0px 0px 130px;
+
+                }
+            
+                .reg {
+                    color: #3498db;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+            
+                .reg:hover {
+                    text-decoration: underline;
+                }
+                </style>
+            
+                <div class="register">
+                    <span style="color: rgb(255, 255, 255);">Click <a class="reg" href="{% url 'sharing_app:home' %}">Home</a> to go back.</span>
+                </div> -->
+            </div>
+    </body>
+</html>
+
+
+
+

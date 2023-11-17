@@ -1,0 +1,79 @@
+/* profile_page.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image:url('/static/user/picture/bg.jpg');
+}
+
+nav {
+  background-color: rgba(51, 51, 51, 0.7);
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  backdrop-filter: blur(35px); 
+}
+.head2{
+  text-align: center;
+}
+.heading1 {
+  font-family: 'Poppins',sans-serif;
+  display: inline-block;
+  margin-right: 55%;
+  font-size: x-large;
+}
+
+ul {
+  list-style-type: none;
+  display: inline-block;
+}
+
+ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+main {
+  text-align: center;
+  padding: 20px;
+}
+
+h2 {
+  color: #333;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: large;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+  padding: 15px 30px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.heading2{
+  margin-top: 130px;
+  font-size: xx-large;
+}
+
+.heading3{
+  margin-top: 80px;
+  font-size: x-large;
+}
+

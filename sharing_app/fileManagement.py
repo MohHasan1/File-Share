@@ -1,4 +1,5 @@
 import shutil
+import os
 
 # When user upload a file a unique directory is created. (this fun is not used when sharing is done)
 '''
@@ -15,6 +16,11 @@ def share_file_path(File):
 
 def shareFile(source_path, destination_path):
    
-    shutil.copy(source_path, destination_path)
+    shutil.copy2(source_path, destination_path)
 
     print(f"File shared successfully from {source_path} to {destination_path}")
+
+def file_exists_in_folder(folder_path, file_name):
+    file_path = os.path.join(folder_path, file_name)
+    return os.path.exists(file_path)
+
