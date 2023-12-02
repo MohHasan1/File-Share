@@ -11,9 +11,11 @@ class File(models.Model):
     fileDir = models.FileField(null=True, upload_to=user_directory_path) # upload_to calls the fun automatically with 2 argumnets (File object and filename)
     fileHash = models.CharField(max_length=64) #sha-256
     owner = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name='ownedFiles')
+    # shared attributes
     shared = models.BooleanField(default=False)
     #relaed_name is used for reverse relation. owned_files = user.ownedFiles.all() 
     sender = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, default=False, related_name='sharedFiles')
+    
     created_shared_at = models.DateTimeField(default=timezone.now)
 
     # self is the file it self we copying:

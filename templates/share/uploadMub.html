@@ -3,7 +3,7 @@
     <head>
    
         <title>Upload Page</title>
-        <link rel="stylesheet" type="text/css" href="/static/user/uploadMub.css?v=1">
+        <link rel="stylesheet" type="text/css" href="/static/user/uploadMub.css?v=2">
 
     </head>
     <body>
@@ -12,8 +12,8 @@
             <div class="logo">File Share</div>
             <ul class="nav-list">
                 <li><a href="{% url 'sharing_app:home' %}">Home</a></li>
-                <li><a href="{% url 'user_app:profile'%}"">Profile</a></li>
-                <li><a href="{% url 'user_app:logout'%}">Logout</a></li>
+                <li><a href="{% url 'user_app:profile' %}">Profile</a></li>
+                <li><a href="{% url 'user_app:logout' %}">Logout</a></li>
             </ul>
         </div>
         
@@ -26,7 +26,7 @@
 
                         {% csrf_token %}
                     <!-- remember name == the field names in form -->
-                        {{ form.fileName.label_tag }}
+                        <!-- {{ form.fileName.label_tag }}
                         <input type="text" id="{{ form.fileName.id_for_label }}" name="{{ form.fileName.name }}" required>
                         {% if form.fileName.errors %}
                             <p class="error">{{ form.fileName.errors }}</p>
@@ -36,11 +36,13 @@
                         <input type="file" id="{{ form.fileDir.id_for_label }}" name="{{ form.fileDir.name }}" required>
                         {% if form.fileDir.errors %}
                             <p class="error">{{ form.fileDir.errors }}</p>
-                        {% endif %}
+                        {% endif %} -->
+                        {{form}}
                     
                         <input class="submit" type="submit" value="Upload">
                     </form>
                 </div>
+                
                 <!-- <style>
                 .register {
                     margin: 300px 0px 0px 130px;

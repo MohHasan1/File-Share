@@ -5,7 +5,7 @@ def generate_key():
 
 def encrypt_file(file_path, key):
 
-    # Read the content:
+    # Read the content: (read)
     with open(file_path, 'rb') as file:
         plaintext = file.read()
 
@@ -13,7 +13,7 @@ def encrypt_file(file_path, key):
     fernet = Fernet(key)
     ciphertext = fernet.encrypt(plaintext)
 
-    # Write the encrypted content:
+    # Write the encrypted content: (rewrite)
     with open(file_path, 'wb') as encrypted_file:
         encrypted_file.write(ciphertext)
 

@@ -4,49 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <title>File Sharing Page</title>
-    <link rel="stylesheet" href="/static/user/shareMub.css?v=1">
+    <link rel="stylesheet" href="/static/user/shareMub.css">
 </head>
 
 <body>
-
     <div class="navbar">
         <div class="logo">File Share</div>
         <ul class="nav-list">
+            <li><a href="{% url 'sharing_app:home' %}">Home</a></li>
             <li><a href="{% url 'sharing_app:upload'%}">Upload File</a></li>
-            <li><a href="{% url 'user_app:profile'%}"">Profile</a></li>
+            <li><a href="{% url 'user_app:profile'%}">Profile</a></li>
             <li><a href="{% url 'user_app:logout'%}">Logout</a></li>
         </ul>
-    </div>
-    
-    <div class="container">
-        <h1>File Sharing</h1>
     </div>
 
     <div class="receiver">
         <h1>Receiver</h1>
     </div>
+    <form method="post">
+        <div class="user">
 
-    <div class="user">
-        <b><label for="username"> Username: </label></b>
-        <input type="text" id="username" name="username" placeholder="Enter Username">
-        <br>
-        <br>
-        <b><label for="share">To share a file: </label></b>
-        <button type="submit" id="share" name="share">Share</button></b>
-    </div>
+            {% csrf_token %}
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" placeholder="Enter Username">
+            <br>
+            <br>
+            <!-- <label for="share">To share a file: </label> -->
+            <button type="submit" id="share" name="share">Share</button></b>
+
+
+            {% if errorMessage %}
+                <script>
+                    alert("{{ errorMessage }}");
+                </script>
+            {% endif %}
+        
+            <!-- {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li>
+                            {% if message.tags %} 
+                            
+                            class="{{ message.tags }}" 
+
+                            {% endif %}>{{ message }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %} -->
+            
+        </div>
+    </form>
+
 
     <div class="file">
         <h1>File Description</h1>
     </div>
 
     <div class="file_info">
-        <p>File Name: </p>
+        <p>File Name: {{file_to_share.fileName}}</p>
         <br>
-        <p>File Size: </p>
+        <p>File Size: {{file_to_share.fileSize}} </p>
         <br>
-        <p>File Type: </p>
-        </b>
+        <!-- <p>File Type: </p>
+        </b> -->
     </div>
+
 </body>
 
 </html>

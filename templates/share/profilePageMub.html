@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="/static/user/profilePage.css?=2">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">Profile Page</div>
+        <ul class="nav-list">
+            <li><a href="{% url 'sharing_app:home' %}">Home</a></li>
+            <li><a href="{% url 'sharing_app:upload' %}">Upload File</a></li>
+            <li><a href="{% url 'user_app:login' %}">Login</a></li>
+            <li><a href="{% url 'user_app:logout' %}">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="message">
+        <p> <a style="color: aqua;">Welcome to your profile page!</a> Here is your profile information.</p>
+    </div>
+
+    <div class="user">
+        <b><label for="firstname">User name: <a style="color: chocolate;">{{user.username}}</a> </label></b>
+        <br>
+        <b><label for="firstname">First Name: <a style="color: chocolate;">{{user.first_name}}</a> </label></b>
+        <br>
+        <b><label for="lastname">Last Name: <a style="color: chocolate;">{{user.last_name}}</a></label></b>
+        <br>
+        <b><label for="email">Email: <a style="color: chocolate;">{{user.email}}</a></label></b>
+        <br>
+        <br>
+    </div>
+
+</body>
+
+</html>

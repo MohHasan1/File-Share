@@ -16,12 +16,14 @@ temp_fernet_key  = b'zdnoc4dAbhI4fZbcSdDMuBPvntPcY7DwHaSsVwAL5js='
 
 @login_required
 def home(request):
-    #file = File.objects.filter(owner=request.user)
-    file = request.user.ownedFiles.all()
+    file = File.objects.filter(owner=request.user)
+    #file = request.user.ownedFiles.all()
     return render(request, 'share/indexAbhi.html', {'user_files':file})
+
 
 @login_required
 def upload(request):
+    
     if request.method == "POST":
 
         # User only inputs 2 data: file name and the file.
@@ -36,13 +38,15 @@ def upload(request):
 
             File.fileSize = round(request.FILES['fileDir'].size / (1024 ** 2), 2)
             File.owner = request.user
-            File.shared = False  
+            # File.shared = False  
             File.sender = None  
 
             File.save()
 
             ############ Hash ############# 
-            File.fileHash = cal_file_hash(open(File.fileDir.path, 'rb'))
+            File.fileHash = cal_file_hash(open(File.fileDir.path, 'rb')) #read bits
+
+            #File.save()
 
             # Encryption (we first save the file and then encrypt)
             key = temp_fernet_key
@@ -57,22 +61,25 @@ def upload(request):
             # print(File.fileHash)
             # File.save()
             # print(cal_file_hash(request.FILES['fileDir']))
+        else:
+            pass
 
     else:
         form = UploadFileForm()
 
-    form = UploadFileForm()
+
     return render(request, 'share/uploadMub.html', {'form':form})
 '''
-
 Documentation: hash the original data not the encrypted data.
+upload
 1. hash
 2. encrypt
+download
 3. decrypt
 4. compare
 5. encrypt
-
 '''
+
 @login_required
 # Instead of using the build in download funtion we will make a custom one.
 def download(request, file_id):
@@ -83,12 +90,20 @@ def download(request, file_id):
     # File path:(fileDir.path)
     file_path = file_inst.fileDir.path
 
+    # encrypt_file(file_path, temp_fernet_key)
+
+
     #decrypt:
     decrypt_file(file_path, temp_fernet_key)
 
+
     # Calculate hash of the file content
     calculated_hash = cal_file_hash(open(file_path, 'rb'))
-    print(calculated_hash)
+    # print(calculated_hash)
+
+    # #encrypt file again:
+    # encrypt_file(file_path, temp_fernet_key)
+
 
     if calculated_hash == file_inst.fileHash:
         # Check if the user has permission to download the file
@@ -101,8 +116,8 @@ def download(request, file_id):
             # decrypt_file(file_path, temp_fernet_key)
 
 
-            calculated_hash = cal_file_hash(open(file_inst.fileDir.path, 'rb'))
-            print(calculated_hash)
+            # calculated_hash = cal_file_hash(open(file_inst.fileDir.path, 'rb'))
+            # print(calculated_hash)
 
             # download:
             with open(file_path, 'rb') as file:
@@ -112,17 +127,19 @@ def download(request, file_id):
             encrypt_file(file_path, temp_fernet_key)
 
 
-            calculated_hash = cal_file_hash(open(file_inst.fileDir.path, 'rb'))
-            print(calculated_hash)
+            # calculated_hash = cal_file_hash(open(file_inst.fileDir.path, 'rb'))
+            # print(calculated_hash)
 
             # Extract the file extension using os.path.splitext() on the full path
-            _, file_extension = os.path.splitext(file_path)
 
-            calculated_hash = cal_file_hash(open(file_inst.fileDir.path, 'rb'))
-            print(calculated_hash)
+
+            _ , file_extension = os.path.splitext(file_path)
+            print(file_extension)
+
+            # calculated_hash = cal_file_hash(open(file_inst.fileDir.path, 'rb'))
+            # print(calculated_hash)
 
             #download file :
-       
             response = HttpResponse(file_content, content_type='application/octet-stream')
             response['Content-Disposition'] = f'attachment; filename="{file_inst.fileName}{file_extension}"'
 
@@ -134,6 +151,9 @@ def download(request, file_id):
             return response
         
         else:
+            #encrypt file again:
+            encrypt_file(file_path, temp_fernet_key)
+
             # Generate a JavaScript script to show a pop-up
             pop_up_script = """
                 <script>
@@ -144,6 +164,9 @@ def download(request, file_id):
 
             return HttpResponse(pop_up_script)
     else:
+        #encrypt file again:
+        encrypt_file(file_path, temp_fernet_key)
+
         pop_up_script = """
             <script>
                 alert("Integrity error, try again.");
@@ -160,6 +183,7 @@ def download(request, file_id):
 @login_required
 def share(request, file_id):
     errorMessage = None
+    file_to_share = File.objects.get(id=file_id)
 
     if request.method == 'POST':
         try:
@@ -179,7 +203,9 @@ def share(request, file_id):
 ########################################## if shared file is None ###############################################################
 # django buil in u dont have to pass in dict:(no pop up)
             if shared_File is None:
-                messages.error(request, "Please check the username. You are using your username!")
+               # messages.error(request, "Please check the username. You are using your username!")
+                errorMessage = "Please check the username. You are using your username!"
+
             else:
 ########################################## Hash check ###############################################################
                 decrypt_file(file_to_share.fileDir.path, temp_fernet_key)
@@ -228,11 +254,11 @@ def share(request, file_id):
                         counter = 0
                         new_file_name = og_file_name
                         
-                        print(os.path.join(shared_File_Dir, new_file_name))
+                        # print(os.path.join(shared_File_Dir, new_file_name))
                         while os.path.exists(os.path.join(shared_File_Dir, new_file_name)):
                             counter += 1
                             _, extension = os.path.splitext(og_file_dir)
-                            base_name, _ = os.path.splitext(shared_File_Dir)
+                            # base_name, _ = os.path.splitext(shared_File_Dir)
                             new_file_name = f"_copy{counter}{extension}"
                             print(new_file_name)
 
@@ -268,8 +294,10 @@ def share(request, file_id):
 
         except User.DoesNotExist:
             errorMessage = "User does not exit, Please put in the correct user name."
+           
 
-    return render(request, 'share/shareMub.html', {'errorMessage':errorMessage})
+
+    return render(request, 'share/shareMub.html', {'errorMessage':errorMessage, 'file_to_share':file_to_share} )
 
 
 

@@ -8,54 +8,23 @@
 }
 
 body {
-  background-image: url("/static/user/picture/leaves1.jpg");
+  background-image: url("/static/user/picture/northern1.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-
-.container {
-  position: absolute;
-  top: 30px;
-  left: 41.5%;
-  width: 300px;
-  height: 50px;
-  background: rgba(186, 186, 186, 0.5);
-  border-radius: 40px; /* Adjust this to match the shape of your other boxes */
-  text-align: center;
-}
-
-.container:hover {
-  background-color: #a9a6a6;
-}
-
-.container h1 {
-  color: black;
-  font-size: 30px;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-.container:hover h1 {
-  color: white;
-}
-
 .receiver {
   display: flex;
   flex-direction: column;
   width: 1000px;
   height: 400px;
   margin: auto;
-  margin-top: 260px;
+  margin-top: 190px;
   position: absolute;
   left: 19%;
-  background: rgba(186, 186, 186, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 40px;
-}
-
-.receiver:hover {
-  background-color: rgba(169, 166, 166, 0.7);
 }
 
 .receiver h1 {
@@ -73,23 +42,18 @@ body {
   font-size: 30px;
 }
 
-.receiver:hover h1 {
-  background-color: #a9a6a6;
-}
-
 .file {
   display: flex;
   flex-direction: column;
   width: 500px;
   height: 200px;
   margin: auto;
-  margin-top: 110px;
+  margin-top: 30px;
   position: absolute;
   left: 4%;
-  background: rgba(186, 186, 186, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 25px;
 }
-
 
 
 .file h1 {
@@ -105,22 +69,19 @@ body {
   height: 25px;
   border-radius: 0 0 10px 10px;
   font-size: larger;
-  transition: background-color 0.3s ease;
 }
 
-.file:hover h1 {
-  background-color: #a9a6a6;
-}
 
 .user {
   position: absolute;
   top: 350px;
-  left: 480px;
-  color: black;
-  font-size: large;
+  left: 550px;
+  color: white;
+  font-size: x-large;
   display: flex;
   flex-direction: column;
   text-align: center;
+  padding: 5px 30px 0px 0px;
 }
 
 .user button {
@@ -136,7 +97,7 @@ body {
 }
 
 .user button:hover {
-  background-color: #a9a6a6;
+  background-color: white;
 }
 
 .user input[type="text"] {
@@ -149,7 +110,6 @@ body {
   text-align: center;
   border: 1px solid white;
   outline: none;
-  transition: border-color 0.3s ease;
 }
 
 .user input[type="text"]:focus {
@@ -160,7 +120,53 @@ body {
   position: absolute;
   top: 150px;
   left: 100px;
-  color: black;
+  color: white;
   display: flex;
   flex-direction: column;
+}
+
+/* hass nav */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: #333; */
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: rgb(41, 96, 192);
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-list li {
+  margin-right: 20px;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-list a:hover {
+  color: #ffd700; /* Change the color on hover */
+}
+
+.content {
+  padding: 20px;
 }

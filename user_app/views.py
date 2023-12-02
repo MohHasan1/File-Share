@@ -26,4 +26,5 @@ def registration(request):
 
 @login_required
 def profile(request):
-    return render(request, 'user/profile.html', {})
+    #return render(request, 'user/profile.html', {})
+    return render(request, 'share/profilePageMub.html', {})

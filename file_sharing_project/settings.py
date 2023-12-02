@@ -15,8 +15,10 @@ SECRET_KEY = 'django-insecure-ves$o^!aqoq%ag_)%x0n6qe%p=(4alqukci2p16_c+iv75&_5u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# '172.20.10.2'
-ALLOWED_HOSTS = []
+# '172.20.10.2' my phones datas private ip
+# '10.0.0.140' home router ellesmere my private ip
+# '10.248.173.146' schhols
+ALLOWED_HOSTS = ['10.0.0.140']
 
 
 # Application definition
@@ -126,5 +128,8 @@ redirect_url = reverse_lazy('sharing_app:home')
 LOGIN_REDIRECT_URL = redirect_url
 
 # Redirect urls:(redirects to login page if an unautharized user tries to access a secure page.)
-redirect_url = reverse_lazy('user_app:login') 
-LOGIN_URL = redirect_url
+login_url = reverse_lazy('user_app:login') 
+LOGIN_URL = login_url
+
+logout_url = reverse_lazy('user_app:login') 
+LOGOUT_REDIRECT_URL = logout_url
