@@ -18,7 +18,7 @@ DEBUG = True
 # '172.20.10.2' my phones datas private ip
 # '10.0.0.140' home router ellesmere my private ip
 # '10.248.173.146' schhols
-ALLOWED_HOSTS = ['10.0.0.140']
+ALLOWED_HOSTS = []
 
 
 # Application definition

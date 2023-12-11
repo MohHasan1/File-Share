@@ -177,8 +177,6 @@ def download(request, file_id):
         return HttpResponse(pop_up_script)
     
     
-    
-
 
 @login_required
 def share(request, file_id):
