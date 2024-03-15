@@ -8,9 +8,9 @@ The File-Share app provides a user-friendly interface for managing files. Users 
 
 ## Screenshots
 
+![Screenshot 3](/screenshots/home.png)
 ![Screenshot 1](/screenshots/register.png)
 ![Screenshot 2](/screenshots/login.png)
-![Screenshot 3](/screenshots/home.png)
 ![Screenshot 4](/screenshots/upload.png)
 ![Screenshot 5](/screenshots/profile.png)
 
